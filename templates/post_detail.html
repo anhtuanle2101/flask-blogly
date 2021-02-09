@@ -1,0 +1,24 @@
+{% extends 'base.html'%}
+
+{% block title %}Post Detail Page{% endblock %}
+
+{% block content%}
+    {% if user %}
+        {% if post %}
+        <h1>{{post.title}}</h1>
+        <p>{{post.content}}</p>
+        <i>By {{user.first_name}} {{user.last_name}}</i>
+        {% endif %}
+        <h4>Tags</h4>
+        {% if tags %}
+        <ul>
+            {% for tag in tags %}
+            <li><a href="/tags/{{tag.id}}">{{tag.name}}</a></li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <a href="/users/{{user.id}}"><button>Cancel</button></a>
+        <a href="/posts/{{post.id}}/edit"><button>Edit</button></a>
+        <a href="/posts/{{post.id}}/delete"><button>Delete</button></a>
+    {% endif %}
+{% endblock%}
